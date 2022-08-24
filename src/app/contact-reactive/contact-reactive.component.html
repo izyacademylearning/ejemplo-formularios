@@ -1,0 +1,49 @@
+<div class="container mt-3">
+  <h1>Fromulario de contacto</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <div class="mb-4">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" required formControlName="name">
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']"
+        class="alert alert-danger">Este campo es obligatorio</div>
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']"
+        class="alert alert-danger">El nombre dee tener almenos
+        {{ contactForm.get('name')?.errors?.['minlength']?.requiredLength}} caracteres.</div>
+    </div>
+    <div class="mb-4">
+      <label for="name" class="form-label">Apellido</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" required formControlName="lastName">
+      <div *ngIf="contactForm.get('lastName')?.touched && contactForm.get('lastName')?.errors?.['required']"
+        class="alert alert-danger">Este campo es obligatorio</div>
+      <div *ngIf="contactForm.get('lastName')?.touched && contactForm.get('lastName')?.errors?.['minlength']"
+        class="alert alert-danger">El apellido dee tener almenos
+        {{ contactForm.get('name')?.errors?.['minlength']?.requiredLength}} caracteres.</div>
+    </div>
+    <div class="mb-4">
+      <label for="phone" class="form-label">Telefono</label>
+      <input type="text" class="form-control" id="phone" name="phone" required formControlName="phone">
+      <div *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.errors?.['required']"
+        class="alert alert-danger">Este campo es obligatorio.</div>
+    </div>
+    <div class="mb-4">
+      <label for="department" class="form-label">Area</label>
+      <select name="department" id="department" class="form-select form-select-sm" formControlName="department">
+        <option selected>Abre el menú</option>
+        <option value="desarrollo">Desarrollo</option>
+        <option value="automatizacion">Automatización</option>
+        <option value="ventas">Ventas</option>
+        <option value="aprendiz">Aprendiz</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label for="comment" class="form-label">Commentario</label>
+      <textarea class="form-control" name="comment" id="comment" rows="4" placeholder="Comentario"
+        formControlName="comment" required></textarea>
+      <div *ngIf="contactForm.get('comment')?.touched && contactForm.get('comment')?.errors?.['required']"
+        class="alert alert-danger">Este campo es obligatorio</div>
+      <div class="d-grid gap-2 col-4 float-end">
+        <button type="submit" class="btn btn-info btn-lg" [disabled]="contactForm.invalid">Send</button>
+      </div>
+    </div>
+  </form>
+</div>
